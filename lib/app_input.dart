@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AppInput extends StatelessWidget {
+class AppInput extends StatefulWidget {
+  const AppInput({super.key});
+
+  @override
+  State<AppInput> createState() => _FormExampleState();
+}
+
+class _FormExampleState extends State<AppInput> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
