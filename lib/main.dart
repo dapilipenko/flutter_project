@@ -1,90 +1,30 @@
 import 'package:flutter/material.dart';
-import 'widgets/basic_layout.dart';
-import 'widgets/listview_layout.dart';
-import 'widgets/complex_layout.dart';
+import 'screens/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const SimpleNotesApp());
 }
 
-class MyApp extends StatelessWidget {
+class SimpleNotesApp extends StatelessWidget {
+  const SimpleNotesApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Layouts',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: MainScreen(),
-    );
-  }
-}
-
-class MainScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Flutter Layouts')),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                'Виберіть Layout',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.grid_view),
-              title: Text('Основний Layout'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => BasicLayout()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.list),
-              title: Text('ListView'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ListViewLayout()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.layers),
-              title: Text('Складний Layout'),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ComplexLayout()),
-                );
-              },
-            ),
-          ],
+      title: 'Прості нотатки',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xFFF0F8FF),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.lightBlue,
+          foregroundColor: Colors.black87,
+        ),
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontSize: 18.0, color: Colors.black87),
+          bodyMedium: TextStyle(fontSize: 16.0, color: Colors.black54),
         ),
       ),
-      body: Builder(
-        builder: (BuildContext context) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Виберіть layout у Drawer', style: TextStyle(fontSize: 18)),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => Scaffold.of(context).openDrawer(),
-                child: Text('Відкрити Drawer'),
-              ),
-            ],
-          ),
-        ),
-      ),
+      home: const HomeScreen(),
     );
   }
 }
